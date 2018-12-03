@@ -1,18 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+
+    <WordInput msg="Add Word" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import WordInput from '@/components/WordInput.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    WordInput
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh);
+}
+</style>

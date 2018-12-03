@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
+import WordList from './views/WordList.vue'
+import Word from './views/Word.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -10,6 +13,16 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/words',
+      name: 'wordlist',
+      component: WordList
+    },
+    {
+      path: '/words/word/:id',
+      name: 'word',
+      component: Word
     },
     {
       path: '/about',
