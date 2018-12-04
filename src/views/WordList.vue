@@ -2,6 +2,8 @@
   <div class="wordlist-container">
     <div class="wordlist-columns">
       <h2>My Stored Words:</h2>
+      <h3>{{ count }}</h3>
+      <button @click="add">add</button>
       <div class="wordlist">
         <ul>
           <li v-for="(word, index) in words" :key="index">
@@ -27,6 +29,16 @@ export default {
         'mouse',
         'cycle'
       ]
+    }
+  },
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
+  },
+  methods: {
+    add () {
+      this.$store.commit('increment')
     }
   }
 }
