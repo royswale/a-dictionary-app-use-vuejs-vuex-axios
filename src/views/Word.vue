@@ -4,6 +4,8 @@
       <h2>
         {{ word }}
         <span v-if="partOfSpeech">[{{ partOfSpeech }}]</span>
+        <br>
+        <span v-for="(pronunciation, index) in pronunciations" :key="index">{{ pronunciation.ipa }}</span>
       </h2>
       <div class="word-info">
         <ul class="words" v-if="senses">
@@ -15,7 +17,7 @@
                 <h4>Examples: </h4>
                 <ul class="examples">
                   <li v-for="(example, index) in sense.examples" :key="index">
-                    {{ example.text}}
+                    {{ example.text }}
                   </li>
                 </ul>
               </div>
@@ -43,7 +45,8 @@ export default {
       wordURL: this.$route.params.data.url,
       // "url": "/v2/dictionaries/entries/cqARDzbb90"
       partOfSpeech: '',
-      senses: ''
+      senses: '',
+      pronunciations: ''
     }
   },
   mounted () {
@@ -55,6 +58,7 @@ export default {
       let data = response.data.result
       this.partOfSpeech = data.part_of_speech
       this.senses = data.senses
+      this.pronunciations = data.pronunciations
       // console.log(response)
     }
   }

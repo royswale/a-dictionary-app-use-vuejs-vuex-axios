@@ -7,7 +7,7 @@
     <div class="word-meaning">
       {{ wordMeaning || error }}
       <div class="word-links" v-if="wordData">
-        <router-link v-bind:to="{ name: 'word', params: { id: word, word: word, data: wordData} }">Read More</router-link>
+        <router-link v-bind:to="{ name: 'word', params: { id: word, word: word, data: wordData } }">Read More</router-link>
         <router-link v-bind:to="{ name: 'wordlist' }">Word List</router-link>
       </div>
     </div>
