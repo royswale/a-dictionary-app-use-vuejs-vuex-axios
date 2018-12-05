@@ -2,12 +2,10 @@
   <div class="wordlist-container">
     <div class="wordlist-columns">
       <h2>My Stored Words:</h2>
-      <h3>{{ count }}</h3>
-      <button @click="add">add</button>
       <div class="wordlist">
         <ul>
           <li v-for="(word, index) in words" :key="index">
-            <router-link v-bind:to="{ name: 'word', params: { id: word, word: word } }">{{ word }}</router-link>
+            <router-link v-bind:to="{ name: 'word', params: { word: word.headword } }">{{ word.headword }}</router-link>
           </li>
         </ul>
       </div>
@@ -16,30 +14,25 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
   name: 'WordList',
   data () {
     return {
-      words: [
-        'test',
-        'compare',
-        'exercise',
-        'judge',
-        'matters',
-        'mouse',
-        'cycle'
-      ]
+
     }
   },
   computed: {
-    count () {
-      return this.$store.state.count
-    }
+    ...mapState({
+      words: 'words'
+    }),
+    ...mapGetters({
+      wordsCount: 'wordsCount'
+    })
   },
   methods: {
-    add () {
-      this.$store.commit('increment')
-    }
+
   }
 }
 </script>

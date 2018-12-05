@@ -20,7 +20,7 @@ export default new Router({
       component: WordList
     },
     {
-      path: '/words/word/:id',
+      path: '/word/:word',
       name: 'word',
       component: Word
     },

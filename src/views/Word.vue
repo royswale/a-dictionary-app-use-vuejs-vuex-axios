@@ -4,8 +4,6 @@
       <h2>
         {{ word }}
         <span v-if="partOfSpeech">[{{ partOfSpeech }}]</span>
-        <br>
-        <span v-for="(pronunciation, index) in pronunciations" :key="index">{{ pronunciation.ipa }}</span>
       </h2>
       <div class="word-info">
         <ul class="words" v-if="senses">
@@ -40,17 +38,18 @@ export default {
   name: 'Word',
   data () {
     return {
-      word: this.$route.params.id,
-      wordId: this.$route.params.data.id,
-      wordURL: this.$route.params.data.url,
-      // "url": "/v2/dictionaries/entries/cqARDzbb90"
+      word: this.$route.params.word,
       partOfSpeech: '',
-      senses: '',
-      pronunciations: ''
+      senses: ''
+    }
+  },
+  computed: {
+    wordData () {
+      return this.$store.getters.getWordDataByWord(this.word)
     }
   },
   mounted () {
-    this.getWordDetails({ url: this.wordURL })
+    this.getWordDetails({ url: this.wordData.url })
   },
   methods: {
     async getWordDetails (params) {
@@ -58,8 +57,6 @@ export default {
       let data = response.data.result
       this.partOfSpeech = data.part_of_speech
       this.senses = data.senses
-      this.pronunciations = data.pronunciations
-      // console.log(response)
     }
   }
 
